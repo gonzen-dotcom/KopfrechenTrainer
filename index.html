@@ -9,17 +9,24 @@
 @media(prefers-color-scheme:dark){:root{--bg:#3B3229;--card:#4A3F34;--ink:#F3EADB;--mute:#CFC3AE;--line:#6B5D4D;--acc:#E3AE8F;--accbg:#5A4B3C;--ok:#C9DDA3;--okbg:#4B5A2E;--bad:#F2B8A8;--badbg:#6E2E24}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Georgia,"Times New Roman",serif}
-h1,h2,h3,button,input,.nav button{font-family:"Trebuchet MS","Segoe UI",sans-serif}
+h1,h2,h3,button,input,select{font-family:"Trebuchet MS","Segoe UI",sans-serif}
 header{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
 h1{margin:0;font-size:22px}
 #total{color:var(--mute);font-size:14px;font-family:sans-serif}
-.wrap{display:grid;grid-template-columns:260px 1fr;max-width:1000px;margin:0 auto}
-.nav{padding:14px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
-.grp{font:700 11px sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--acc);margin:14px 10px 2px}.grp:first-child{margin-top:2px}
-.nav button{text-align:left;border:0;background:none;color:var(--ink);padding:9px 10px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;justify-content:space-between;gap:8px}
-.nav button:hover{background:var(--accbg)}
-.nav button.on{background:var(--acc);color:var(--bg)}
-.nav small{opacity:.75}
+.wrap{display:grid;grid-template-columns:300px 1fr;max-width:1080px;margin:0 auto}
+.nav{padding:14px;border-right:1px solid var(--line)}
+.nav button{font-size:14px;cursor:pointer;color:var(--ink)}
+.tool{display:block;width:100%;text-align:left;padding:10px 12px;margin-bottom:8px;border:1px dashed var(--acc);border-radius:8px;background:none}
+.tool:hover{background:var(--accbg)}.tool.on{background:var(--acc);color:var(--bg)!important;border-style:solid}
+.fold{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:8px;margin-bottom:10px;overflow:hidden}
+.fh{width:100%;display:flex;align-items:center;gap:8px;padding:11px 12px;border:0;background:none;font-weight:700;text-align:left}
+.fh:hover{background:var(--accbg)}
+.chev{display:inline-block;transition:transform .15s;color:var(--c)}.fold.open .chev{transform:rotate(90deg)}
+.fh small{margin-left:auto;font-weight:400;color:var(--mute);white-space:nowrap}
+.fbody{display:none;border-top:1px solid var(--line);padding:4px;background:var(--bg)}.fold.open .fbody{display:block}
+.it{width:100%;display:flex;justify-content:space-between;gap:8px;text-align:left;border:0;background:none;padding:8px 10px;border-radius:6px}
+.it:hover{background:var(--accbg)}.it.on{background:var(--acc);color:var(--bg)!important}
+.it small{opacity:.8}
 main{padding:22px 24px 60px;min-width:0}
 h2{margin:0 0 4px;font-size:26px}
 .sub{color:var(--mute);margin:0 0 16px}
@@ -31,19 +38,35 @@ h2{margin:0 0 4px;font-size:26px}
 .ex{border-left:4px solid var(--acc);padding:6px 14px;margin:10px 0;background:var(--accbg);border-radius:0 6px 6px 0}
 .ex b{font-family:sans-serif}
 .q{font:700 clamp(34px,8vw,56px)/1.2 "Trebuchet MS",sans-serif;text-align:center;margin:10px 0 18px;letter-spacing:.02em}
+.q.hid{filter:blur(14px);cursor:pointer}
+.tag{text-align:center;font:12px sans-serif;color:var(--acc);text-transform:uppercase;letter-spacing:.08em}
 .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-input{font-size:24px;padding:10px 12px;width:200px;text-align:center;border:2px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
-input:focus{outline:2px solid var(--acc);border-color:var(--acc)}
+input[type=text],select{font-size:24px;padding:10px 12px;width:200px;text-align:center;border:2px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+select{font-size:16px;width:auto;padding:8px}
+input[type=text]:focus{outline:2px solid var(--acc);border-color:var(--acc)}
 .btn{font-size:16px;padding:10px 18px;border:1px solid var(--acc);border-radius:6px;background:var(--acc);color:var(--bg);cursor:pointer}
 .btn.alt{background:none;color:var(--ink);border-color:var(--line)}
-.q.hid{filter:blur(14px);cursor:pointer}.opts{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:14px;font:14px sans-serif}.opts input{width:auto;padding:0;font-size:inherit}.opts .btn{font-size:14px;padding:6px 12px}
 .fb{margin-top:16px;padding:12px 14px;border-radius:6px;display:none}
-.fb.ok{display:block;background:var(--okbg);color:var(--ok)}
-.fb.bad{display:block;background:var(--badbg);color:var(--bad)}
-.fb.info{display:block;background:var(--accbg)}
+.fb.ok{display:block;background:var(--okbg);color:var(--ok)}.fb.bad{display:block;background:var(--badbg);color:var(--bad)}.fb.info{display:block;background:var(--accbg)}
 .stats{display:flex;gap:18px;justify-content:center;color:var(--mute);font:14px sans-serif;margin-top:16px}
-.lvl{display:flex;gap:8px;align-items:center;justify-content:center;margin-bottom:6px;font:14px sans-serif;color:var(--mute)}
-@media(max-width:700px){.grp{margin:0 4px!important;align-self:center;white-space:nowrap}.wrap{grid-template-columns:1fr}.nav{border-right:0;border-bottom:1px solid var(--line);flex-direction:row;overflow-x:auto}.nav button{white-space:nowrap}}
+.lvl{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:12px;font:14px sans-serif;color:var(--mute)}
+.chip{padding:5px 12px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--ink);cursor:pointer;font-size:14px}
+.chip.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.opts{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:14px;font:14px sans-serif}
+.opts .btn{font-size:14px;padding:6px 12px}
+.flash{text-align:center;padding:28px 10px;border:2px dashed var(--line);border-radius:10px;margin-bottom:16px;cursor:pointer;min-height:190px}
+.ans{color:var(--acc)}.hint{color:var(--mute);font:14px sans-serif}
+.pg{border-left:5px solid var(--c);background:var(--card);border-radius:6px;padding:8px 12px;margin-bottom:8px}
+.pgh{font:700 15px sans-serif;display:block;margin-bottom:4px}
+.pl{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:2px 12px;font:14px sans-serif}
+.err{color:var(--bad);font:14px sans-serif;margin:6px 0}
+.sheet{background:#fff;color:#000;padding:22px;border:1px solid var(--line);border-radius:6px;margin-top:18px;font-family:"Trebuchet MS",sans-serif}
+.sheet h2{font-size:22px}.sheet .meta{border-bottom:2px solid #000;padding-bottom:8px;margin-bottom:16px;font-size:14px}
+.tasks{columns:2;column-gap:44px;padding-left:26px}.tasks li{break-inside:avoid;margin:0 0 18px;font-size:18px}
+.ln{display:inline-block;min-width:80px;border-bottom:1px solid #000;margin-left:8px}
+.sol{margin-top:24px;break-before:page}.sol ol{columns:3;font-size:15px}
+@media(max-width:760px){.wrap{grid-template-columns:1fr}.nav{border-right:0;border-bottom:1px solid var(--line)}.tasks,.sol ol{columns:1}}
+@media print{header,.nav,.noprint{display:none!important}.wrap{display:block;max-width:none}main{padding:0}body{background:#fff}.sheet{border:0;padding:0;margin:0}}
 </style>
 </head>
 <body>
@@ -57,8 +80,8 @@ const M=[
 th:`<div class="card"><h3>Die Idee</h3>Wir lesen und sprechen Zahlen von links nach rechts – also rechnen wir auch so. Man addiert nicht Einer, Zehner, Hunderter getrennt von hinten, sondern zerlegt die zweite Zahl und addiert sie Stück für Stück zur ersten.</div>
 <div class="ex"><b>Beispiel: 314 + 259</b><br>314 + 200 = 514<br>514 + 50 = 564<br>564 + 9 = <b>573</b></div>
 <div class="card"><h3>Tipp</h3>Merke dir immer nur das Zwischenergebnis. So bleibt der Kopf frei und du hast nie mehrere Zahlen gleichzeitig zu halten.</div>`,
-g(){const a=r(120,899),b=r(120,899),h=b-b%100,t=b%100-b%10,o=b%10;
-return{q:`${a} + ${b}`,a:a+b,e:`${a} + ${h} = ${a+h}; + ${t} = ${a+h+t}; + ${o} = ${a+b}`}}},
+g(L){const R=L==1?[12,99]:L==3?[1200,8999]:[120,899],a=r(R[0],R[1]),b=r(R[0],R[1]),h=b-b%100,t=b%100-b%10,o=b%10;
+return{q:`${a} + ${b}`,a:a+b,e:addE(a,b)}}},
 
 {t:"Subtrahieren durch Runden",s:"Subtraktion",
 th:`<div class="card"><h3>Die Idee</h3>Eine Subtraktion wird leicht, wenn man die abgezogene Zahl auf die nächste Zehnerzahl aufrundet, rechnet und danach die Differenz wieder dazugibt.</div>
@@ -73,10 +96,10 @@ th:`<div class="card"><h3>Die Idee</h3>Eine Subtraktion wird leicht, wenn man di
 <div class="ex"><b>Beispiel: 83 − 47</b><br>Complement von 47 zu 100 = 53<br>83 + 53 = 136<br>136 − 100 = <b>36</b></div>
 <div class="ex"><b>Beispiel: 825 − 387</b><br>Erst 800 − 387: Complement 613, minus 200 = 413<br>Dann die restlichen 25 dazu: 413 + 25 = <b>438</b></div>
 <div class="card"><h3>Welche Methode wann?</h3>Endet die Zahl knapp unter einer Zehner- oder Hunderterzahl, runde auf. Ist der Minuend zweistellig oder liegt knapp über einer glatten Zahl wie 800, nimm das Complement.</div>`,
-g(){const k=r(0,2);let a,b,c;
-if(k==0){a=r(300,950);do b=r(101,a-50);while(b%10==0);c=Math.ceil(b/10)*10;
+g(L){const k=L==1?(r(0,1)?0:2):r(0,2);let a,b,c;
+if(k==0){a=L==1?r(60,150):L==3?r(3000,9500):r(300,950);do b=r(Math.floor(a/4),a-Math.min(50,Math.floor(a/3)));while(b%10==0);c=Math.ceil(b/10)*10;
 return{q:`${a} − ${b}`,a:a-b,e:`${b} → ${c} (${c-b} zu viel); ${a} − ${c} = ${a-c}; + ${c-b} = ${a-b}`}}
-if(k==1){a=r(500,990);do b=r(101,a-60);while(b%100<70);c=Math.ceil(b/100)*100;
+if(k==1){a=L==3?r(1500,9990):r(500,990);do b=r(101,a-60);while(b%100<70);c=Math.ceil(b/100)*100;
 return{q:`${a} − ${b}`,a:a-b,e:`${b} → ${c} (${c-b} zu viel); ${a} − ${c} = ${a-c}; + ${c-b} = ${a-b}`}}
 a=r(51,99);do b=r(21,a-1);while(b%10==0);c=100-b;
 return{q:`${a} − ${b}`,a:a-b,e:`Complement von ${b} zu 100 = ${c}; ${a} + ${c} = ${a+c}; − 100 = ${a-b}`}}},
@@ -85,32 +108,32 @@ return{q:`${a} − ${b}`,a:a-b,e:`Complement von ${b} zu 100 = ${c}; ${a} + ${c}
 th:`<div class="card"><h3>Die Idee</h3>Mal 4 heißt zweimal verdoppeln, mal 8 heißt dreimal verdoppeln. Verdoppeln fällt leichter als eine große Multiplikation.</div>
 <div class="ex"><b>Beispiel: 37 × 4</b><br>37 → 74 → <b>148</b></div>
 <div class="ex"><b>Beispiel: 37 × 8</b><br>37 → 74 → 148 → <b>296</b></div>`,
-g(){const m=r(0,1)?4:8,n=r(13,98);let s=[n],x=n;for(let i=0;i<(m==4?2:3);i++){x*=2;s.push(x)}
+g(L){const m=r(0,1)?4:8,n=rg(L,[13,49],[13,98],[112,498]);let s=[n],x=n;for(let i=0;i<(m==4?2:3);i++){x*=2;s.push(x)}
 return{q:`${n} × ${m}`,a:n*m,e:s.join(" → ")}}},
 
 {t:"Mal 5",s:"Halbieren",
 th:`<div class="card"><h3>Die Idee</h3>5 ist die Hälfte von 10. Also: erst mal 10 nehmen, dann halbieren – oder erst halbieren und dann mal 10.</div>
 <div class="ex"><b>Beispiel: 46 × 5</b><br>Hälfte von 46 = 23, mal 10 = <b>230</b></div>
 <div class="ex"><b>Beispiel: 37 × 5</b><br>37 × 10 = 370, Hälfte = <b>185</b></div>`,
-g(){const n=r(12,98);return{q:`${n} × 5`,a:n*5,e:`${n} × 10 = ${n*10}; Hälfte davon = ${n*5}`}}},
+g(L){const n=rg(L,[12,49],[12,98],[112,998]);return{q:`${n} × 5`,a:n*5,e:`${n} × 10 = ${n*10}; Hälfte davon = ${n*5}`}}},
 
 {t:"Mal 25",s:"Durch 4 teilen",
 th:`<div class="card"><h3>Die Idee</h3>25 ist ein Viertel von 100. Also: die Zahl mal 100 nehmen und durch 4 teilen (zweimal halbieren).</div>
 <div class="ex"><b>Beispiel: 36 × 25</b><br>36 × 100 = 3600<br>3600 : 4 = <b>900</b></div>
 <div class="ex"><b>Beispiel: 18 × 25</b><br>1800 → 900 → <b>450</b></div>`,
-g(){const n=r(12,96);return{q:`${n} × 25`,a:n*25,e:`${n} × 100 = ${n*100}; halbiert ${n*50}; nochmal halbiert ${n*25}`}}},
+g(L){const n=rg(L,[12,48],[12,96],[104,496]);return{q:`${n} × 25`,a:n*25,e:`${n} × 100 = ${n*100}; halbiert ${n*50}; nochmal halbiert ${n*25}`}}},
 
 {t:"Mal 9",s:"Mal 10 minus 1",
 th:`<div class="card"><h3>Die Idee</h3>9 = 10 − 1. Man rechnet die Zahl mal 10 und zieht die Zahl einmal ab.</div>
 <div class="ex"><b>Beispiel: 47 × 9</b><br>47 × 10 = 470<br>470 − 47 = <b>423</b></div>
 <div class="card"><h3>Tipp</h3>Dasselbe geht mit 99: Zahl × 100 − Zahl. Und mit 101: Zahl × 100 + Zahl.</div>`,
-g(){const n=r(12,99);return{q:`${n} × 9`,a:n*9,e:`${n} × 10 = ${n*10}; − ${n} = ${n*9}`}}},
+g(L){const n=rg(L,[12,49],[12,99],[112,999]);return{q:`${n} × 9`,a:n*9,e:`${n} × 10 = ${n*10}; − ${n} = ${n*9}`}}},
 
 {t:"Mal 99 und mal 101",s:"Nahe an 100",
 th:`<div class="card"><h3>Die Idee</h3>Zahlen nahe 100 rechnet man als 100 ± 1: Für 99 nimmt man Zahl × 100 und zieht die Zahl ab; für 101 addiert man sie.</div>
 <div class="ex"><b>Beispiel: 43 × 99</b><br>4300 − 43 = <b>4257</b></div>
 <div class="ex"><b>Beispiel: 43 × 101</b><br>4300 + 43 = <b>4343</b></div>`,
-g(){const n=r(12,99),m=r(0,1)?99:101,v=m==99?-1:1;
+g(L){const n=rg(L,[12,49],[12,99],[112,999]),m=r(0,1)?99:101,v=m==99?-1:1;
 return{q:`${n} × ${m}`,a:n*m,e:`${n} × 100 = ${n*100}; ${v<0?"−":"+"} ${n} = ${n*m}`}}},
 
 {t:"Mal 11",s:"Ziffern auseinanderziehen",
@@ -120,14 +143,14 @@ th:`<div class="card"><h3>Zweistellige Zahlen</h3>Schreibe die beiden Ziffern au
 <div class="ex"><b>Beispiel: 78 × 11</b><br>7 · (7+8=15) · 8 → 7+1 | 5 | 8 → <b>858</b></div>
 <div class="card"><h3>Dreistellige Zahlen</h3>Gleiches Prinzip: erste Ziffer, Summe der ersten zwei, Summe der letzten zwei, letzte Ziffer. Übertrag nach links nicht vergessen.</div>
 <div class="ex"><b>Beispiel: 314 × 11</b><br>3 · (3+1) · (1+4) · 4 → <b>3454</b></div>`,
-g(){const n=r(0,2)?r(12,99):r(101,999);return{q:`${n} × 11`,a:n*11,e:`${n} × 10 = ${n*10}; + ${n} = ${n*11}. Ziffernsummen der Nachbarn nach dem Muster oben bilden.`}}},
+g(L){const n=L==1?r(12,99):L==3?r(101,9999):(r(0,2)?r(12,99):r(101,999));return{q:`${n} × 11`,a:n*11,e:`${n} × 10 = ${n*10}; + ${n} = ${n*11}. Ziffernsummen der Nachbarn nach dem Muster oben bilden.`}}},
 
 {t:"Quadrate von Zahlen auf 5",s:"n·(n+1) und 25",
 th:`<div class="card"><h3>Die Idee</h3>Bei einer Zahl, die auf 5 endet: Nimm die Zehnerziffer(n) a, rechne a × (a+1) und hänge 25 an.</div>
 <div class="ex"><b>Beispiel: 35²</b><br>a = 3; 3 × 4 = 12<br>→ <b>1225</b></div>
 <div class="ex"><b>Beispiel: 85²</b><br>8 × 9 = 72 → <b>7225</b></div>
 <div class="card"><h3>Warum?</h3>(10a+5)² = 100·a(a+1) + 25.</div>`,
-g(){const a=r(1,12),n=a*10+5;return{q:`${n}²`,a:n*n,e:`a = ${a}; ${a} × ${a+1} = ${a*(a+1)}; dann 25 anhängen → ${n*n}`}}},
+g(L){const a=rg(L,[1,9],[1,12],[10,30]),n=a*10+5;return{q:`${n}²`,a:n*n,e:`a = ${a}; ${a} × ${a+1} = ${a*(a+1)}; dann 25 anhängen → ${n*n}`}}},
 
 {t:"Zweistellige Zahlen quadrieren",s:"Runden und ausgleichen",
 th:`<div class="card"><h3>Die Idee</h3>Eine Zahl n wird zur nächsten Zehnerzahl um d nach oben und nach unten verschoben. Dann gilt n² = (n−d)(n+d) + d².</div>
@@ -135,27 +158,27 @@ th:`<div class="card"><h3>Die Idee</h3>Eine Zahl n wird zur nächsten Zehnerzahl
 <svg viewBox="0 0 380 150" style="max-width:100%;width:380px;display:block;margin-top:8px"><g fill="none" stroke="currentColor"><rect x="5" y="10" width="103" height="103" fill="var(--accbg)"/><rect x="175" y="10" width="110" height="97" fill="var(--accbg)"/><rect x="295" y="10" width="7" height="7" fill="var(--acc)"/></g><g fill="currentColor" font-size="11" font-family="sans-serif"><text x="56" y="60" text-anchor="middle">47 × 47</text><text x="56" y="128" text-anchor="middle">= 47²</text><text x="230" y="55" text-anchor="middle">44 × 50</text><text x="230" y="128" text-anchor="middle">= 2200</text><text x="294" y="34">3 × 3 = 9</text><text x="142" y="66" text-anchor="middle" font-size="22">→</text><text x="190" y="144" font-size="10">3 von einer Seite nehmen, der anderen geben; es bleibt ein 3×3-Quadrat</text></g></svg></div>
 <div class="ex"><b>Beispiel: 62²</b><br>d = 2 → 60 × 64 = 3840<br>+ 4 → <b>3844</b></div>
 <div class="card"><h3>Tipp</h3>Mal 50 oder mal 40 rechnest du am besten über mal 100 und halbieren (bzw. mal 4 und mal 10).</div>`,
-g(){let n;do n=r(13,97);while(n%5==0);const t=Math.round(n/10)*10,d=Math.abs(n-t);
+g(L){let n;do n=rg(L,[13,50],[13,97],[103,197]);while(n%5==0);const t=Math.round(n/10)*10,d=Math.abs(n-t);
 return{q:`${n}²`,a:n*n,e:`d = ${d}; ${n-d} × ${n+d} = ${(n-d)*(n+d)}; + ${d}² = ${d*d} → ${n*n}`}}},
 
 {t:"Symmetrie-Trick",s:"Zahlen um eine Zehnerzahl",
 th:`<div class="card"><h3>Die Idee</h3>Liegen zwei Zahlen gleich weit unter und über einer glatten Zahl m, gilt (m−d)(m+d) = m² − d².</div>
 <div class="ex"><b>Beispiel: 47 × 53</b><br>m = 50, d = 3<br>50² = 2500; 3² = 9<br>2500 − 9 = <b>2491</b></div>
 <div class="ex"><b>Beispiel: 68 × 72</b><br>m = 70, d = 2: 4900 − 4 = <b>4896</b></div>`,
-g(){const m=r(2,9)*10,d=r(1,9);return{q:`${m-d} × ${m+d}`,a:m*m-d*d,e:`m = ${m}, d = ${d}; ${m}² = ${m*m}; − ${d}² = ${d*d} → ${m*m-d*d}`}}},
+g(L){const m=L==3?r(5,19)*10:r(2,9)*10,d=L==1?r(1,5):r(1,9);return{q:`${m-d} × ${m+d}`,a:m*m-d*d,e:`m = ${m}, d = ${d}; ${m}² = ${m*m}; − ${d}² = ${d*d} → ${m*m-d*d}`}}},
 
 {t:"Zahlen nahe 100 multiplizieren",s:"Abstände zu 100",
 th:`<div class="card"><h3>Die Idee</h3>Zahlen knapp unter 100 haben einen „Abstand“ zu 100. Linke Seite: eine Zahl minus der Abstand der anderen. Rechte Seite: Produkt der Abstände (zweistellig).</div>
 <div class="ex"><b>Beispiel: 96 × 93</b><br>Abstände 4 und 7<br>Links: 96 − 7 = 89 (oder 93 − 4)<br>Rechts: 4 × 7 = 28<br>→ <b>8928</b></div>
 <div class="card"><h3>Warum?</h3>(100−x)(100−y) = 100·(100−x−y) + x·y.</div>`,
-g(){const x=r(2,12),y=r(2,12),a=100-x,b=100-y;
+g(L){const x=rg(L,[2,6],[2,12],[5,20]),y=rg(L,[2,6],[2,12],[5,20]),a=100-x,b=100-y;
 return{q:`${a} × ${b}`,a:a*b,e:`Abstände ${x} und ${y}; Links: ${a} − ${y} = ${a-y}; Rechts: ${x} × ${y} = ${x*y} → ${a*b}`}}},
 {t:"Zweistellig × einstellig",s:"Zerlegen von links",
 th:`<div class="card"><h3>Die Idee</h3>Zerlege die zweistellige Zahl in Zehner und Einer, multipliziere beide Teile einzeln und addiere – von links nach rechts.</div>
 <div class="ex"><b>Beispiel: 47 × 6</b><br>40 × 6 = 240<br>7 × 6 = 42<br>240 + 42 = <b>282</b></div>
 <div class="card"><h3>Knapp unter einer Zehnerzahl</h3>Runde auf und ziehe den Überschuss ab.</div>
 <div class="ex"><b>Beispiel: 98 × 6</b><br>100 × 6 = 600; 2 × 6 = 12<br>600 − 12 = <b>588</b></div>`,
-g(){const n=r(12,99),m=r(3,9),t=n-n%10,o=n%10;
+g(L){const n=rg(L,[12,49],[12,99],[51,99]),m=rg(L,[2,5],[3,9],[6,9]),t=n-n%10,o=n%10;
 return{q:`${n} × ${m}`,a:n*m,e:o>=8?`${t+10} × ${m} = ${(t+10)*m}; − ${10-o} × ${m} = ${(10-o)*m} → ${n*m}`:`${t} × ${m} = ${t*m}; ${o} × ${m} = ${o*m}; Summe = ${n*m}`}}},
 
 {t:"Dreistellig × einstellig",s:"Hunderter, Zehner, Einer",
@@ -163,7 +186,7 @@ th:`<div class="card"><h3>Die Idee</h3>Gleiches Prinzip wie bei zwei Stellen: Vo
 <div class="ex"><b>Beispiel: 683 × 7</b><br>600 × 7 = 4200<br>+ 80 × 7 = 560 → 4760<br>+ 3 × 7 = 21 → <b>4781</b></div>
 <div class="card"><h3>Knapp unter einer Hunderterzahl</h3></div>
 <div class="ex"><b>Beispiel: 398 × 6</b><br>400 × 6 = 2400; 2 × 6 = 12<br>2400 − 12 = <b>2388</b></div>`,
-g(){const n=r(112,999),m=r(3,9),h=n-n%100,t=n%100-n%10,o=n%10;
+g(L){const n=rg(L,[112,499],[112,999],[1012,4999]),m=rg(L,[2,5],[3,9],[6,9]),h=n-n%100,t=n%100-n%10,o=n%10;
 return{q:`${n} × ${m}`,a:n*m,e:`${h} × ${m} = ${h*m}; + ${t} × ${m} = ${h*m+t*m}; + ${o} × ${m} = ${n*m}`}}},
 
 {t:"Zweistellig × zweistellig",s:"Distributivgesetz",
@@ -172,7 +195,7 @@ th:`<div class="card"><h3>Die Idee</h3>Zerlege eine der beiden Zahlen in Zehner 
 <div class="card"><h3>Aufrunden, wenn die Einerziffer groß ist</h3>Bei 7, 8 oder 9 als Einer lohnt sich das Aufrunden und anschließende Abziehen.</div>
 <div class="ex"><b>Beispiel: 29 × 43</b><br>30 × 43 = 1290<br>− 1 × 43 → 1290 − 43 = <b>1247</b></div>
 <div class="card"><h3>Tipp</h3>Rechne zuerst die Zehner-Multiplikation (mit der kleineren Zahl im Kopf behalten). Zerlege immer die Zahl, die leichter zu zerlegen ist.</div>`,
-g(){const a=r(12,99),b=r(12,99),t=a-a%10,o=a%10;
+g(L){const a=rg(L,[12,40],[12,99],[12,99]),b=rg(L,[11,25],[12,99],[112,299]),t=a-a%10,o=a%10;
 return{q:`${a} × ${b}`,a:a*b,e:o>=7?`${t+10} × ${b} = ${(t+10)*b}; − ${10-o} × ${b} = ${(10-o)*b} → ${a*b}`:`${t} × ${b} = ${t*b}; ${o} × ${b} = ${o*b}; ${t*b} + ${o*b} = ${a*b}`}}},
 
 {t:"Dreistellige Zahlen quadrieren",s:"Auf Hunderter ausgleichen",
@@ -180,14 +203,14 @@ th:`<div class="card"><h3>Die Idee</h3>Wie bei zweistelligen Zahlen, nur mit der
 <div class="ex"><b>Beispiel: 314²</b><br>d = 14 → 300 × 328 = 98 400<br>14² = 196<br>98 400 + 196 = <b>98 596</b></div>
 <div class="ex"><b>Beispiel: 987²</b><br>d = 13 → 974 × 1000 = 974 000<br>13² = 169<br>974 000 + 169 = <b>974 169</b></div>
 <div class="card"><h3>Tipp</h3>Das Quadrat von d (bis ca. 50) lernst du aus den zweistelligen Quadraten. 300 × 328 rechnest du als 3 × 328 = 984, dann mal 100.</div>`,
-g(){let n;do n=r(112,988);while(n%100==0);const c=Math.round(n/100)*100,d=Math.abs(n-c);
+g(L){let n;do n=rg(L,[102,160],[112,988],[1012,1988]);while(n%100==0);const c=Math.round(n/100)*100,d=Math.abs(n-c);
 return{q:`${n}²`,a:n*n,e:`d = ${d}; ${n-d} × ${n+d} = ${(n-d)*(n+d)}; + ${d}² = ${d*d} → ${n*n}`}}},
 
 {t:"Division durch eine Ziffer",s:"Schriftlich im Kopf",
 th:`<div class="card"><h3>Die Idee</h3>Teile Ziffer für Ziffer von links. Der Rest wird als Zehner vor die nächste Ziffer gestellt. Dabei entstehen die Ziffern des Ergebnisses.</div>
 <div class="ex"><b>Beispiel: 861 : 7</b><br>8 : 7 = 1 Rest 1<br>16 : 7 = 2 Rest 2<br>21 : 7 = 3 Rest 0<br>Ergebnis: <b>123</b></div>
 <div class="card"><h3>Abkürzungen</h3>: 5 = × 2 und : 10. : 4 = zweimal halbieren. : 8 = dreimal halbieren.</div>`,
-g(){const m=r(3,9),q=r(12,150),a=m*q;let rem=0,st=[];for(const ch of String(a)){const c=rem*10+(+ch);st.push(`${c} : ${m} = ${Math.floor(c/m)} Rest ${c%m}`);rem=c%m}
+g(L){const m=rg(L,[2,5],[3,9],[6,9]),q=rg(L,[12,50],[12,150],[150,999]),a=m*q;let rem=0,st=[];for(const ch of String(a)){const c=rem*10+(+ch);st.push(`${c} : ${m} = ${Math.floor(c/m)} Rest ${c%m}`);rem=c%m}
 return{q:`${a} : ${m}`,a:q,e:st.join("; ")}}},
 
 {t:"Division durch zwei Ziffern",s:"Schätzen und zerlegen",
@@ -195,7 +218,7 @@ th:`<div class="card"><h3>Die Idee</h3>Ziehe zuerst das größte volle Zehnerfac
 <div class="ex"><b>Beispiel: 645 : 15</b><br>15 × 40 = 600<br>Rest 45; 45 : 15 = 3<br>40 + 3 = <b>43</b></div>
 <div class="card"><h3>In Faktoren zerlegen</h3>Ist der Divisor zusammengesetzt, teile nacheinander.</div>
 <div class="ex"><b>Beispiel: 504 : 12</b><br>504 : 4 = 126; 126 : 3 = <b>42</b></div>`,
-g(){const d=r(12,49);let q;do q=r(12,70);while(q%10==0);const a=d*q,t=q-q%10;
+g(L){const d=rg(L,[11,25],[12,49],[25,99]);let q;do q=rg(L,[11,30],[12,70],[12,99]);while(q%10==0);const a=d*q,t=q-q%10;
 return{q:`${a} : ${d}`,a:q,e:`${d} × ${t} = ${d*t}; Rest ${a-d*t} : ${d} = ${q-t}; ${t} + ${q-t} = ${q}`}}},
 
 {t:"Dezimaldarstellung von Brüchen",s:"Brüche in Dezimalzahlen",
@@ -204,7 +227,7 @@ th:`<div class="card"><h3>Auswendig lernen</h3>1/2 = 0,5; 1/4 = 0,25; 3/4 = 0,75
 <div class="ex">2/7 = 0,285714 …<br>3/7 = 0,428571 …<br>4/7 = 0,571428 …<br>5/7 = 0,714285 …<br>6/7 = 0,857142 …<br><b>Merke:</b> Die Startziffern wachsen mit dem Zähler.</div>
 <div class="card"><h3>Weitere</h3>1/3 = 0,333…; 1/9 = 0,111…; 1/11 = 0,0909…; n/11 = n × 0,0909…, 1/6 = 0,1666…</div>
 <div class="card"><h3>Eingabe</h3>Dezimalzahl mit Komma oder Punkt; gerundet auf 3 Stellen, falls verlangt.</div>`,
-g(){const k=r(0,2);
+g(L){const k=L==1?0:L==3?r(1,2):r(0,2);
 if(k==0){const den=[2,4,5,8,20,25][r(0,5)],p=r(1,den-1),a=Number((p/den).toFixed(6));
 return{q:`${p}/${den}`,a,e:`1/${den} = ${f(1/den)}; × ${p} = ${f(a)}`}}
 if(k==1){const p=r(1,6),a=Math.round(p/7*1000)/1000;
@@ -217,7 +240,7 @@ th:`<div class="card"><h3>Multiplizieren</h3>Zähler mal Zähler, Nenner mal Nen
 <div class="ex"><b>Beispiel: 3/4 × 8/9</b><br>3 und 9 durch 3, 8 und 4 durch 4:<br>1/1 × 2/3 = <b>2/3</b></div>
 <div class="card"><h3>Dividieren</h3>Teile durch einen Bruch, indem du mit dem Kehrwert multiplizierst.</div>
 <div class="ex"><b>Beispiel: 2/3 : 4/5</b><br>2/3 × 5/4 = 10/12 = <b>5/6</b></div>`,
-g(){const a=r(1,8),b=r(2,9),c=r(1,8),d=r(2,9),dv=r(0,1);
+g(L){const X=L==1?[4,5]:L==3?[12,12]:[8,9],a=r(1,X[0]),b=r(2,X[1]),c=r(1,X[0]),d=r(2,X[1]),dv=r(0,1);
 const p=dv?a*d:a*c,q=dv?b*c:b*d;
 return{q:`${a}/${b} ${dv?"÷":"×"} ${c}/${d}`,pre:"Ergebnis als gekürzter Bruch (z. B. 3/4)",im:"text",a:p/q,s:fr(p,q),
 e:dv?`Kehrwert: ${a}/${b} × ${d}/${c} = ${a*d}/${b*c} = ${fr(p,q)}`:`${a} × ${c} = ${a*c}; ${b} × ${d} = ${b*d} → ${a*c}/${b*d} = ${fr(p,q)}`}}},
@@ -227,7 +250,7 @@ th:`<div class="card"><h3>Die Kreuzmethode</h3>a/b ± c/d = (a×d ± b×c) / (b�
 <div class="ex"><b>Beispiel: 1/3 + 2/5</b><br>1 × 5 + 3 × 2 = 11<br>Nenner: 3 × 5 = 15 → <b>11/15</b></div>
 <div class="ex"><b>Beispiel: 5/6 − 1/4</b><br>5 × 4 − 6 × 1 = 14; 6 × 4 = 24<br>14/24 = <b>7/12</b></div>
 <div class="card"><h3>Tipp</h3>Haben beide Nenner einen gemeinsamen Teiler (6 und 4), wird das Ergebnis oft kürzbar.</div>`,
-g(){let a,b,c,d,p,q,op;do{b=r(2,9);d=r(2,9);a=r(1,b-1);c=r(1,d-1);op=r(0,1);p=a*d+(op?-1:1)*c*b}while(b==d||p<=0);q=b*d;
+g(L){const X=L==1?5:L==3?12:9;let a,b,c,d,p,q,op;do{b=r(2,X);d=r(2,X);a=r(1,b-1);c=r(1,d-1);op=r(0,1);p=a*d+(op?-1:1)*c*b}while(b==d||p<=0);q=b*d;
 return{q:`${a}/${b} ${op?"−":"+"} ${c}/${d}`,pre:"Ergebnis als gekürzter Bruch (z. B. 3/4)",im:"text",a:p/q,s:fr(p,q),
 e:`${a} × ${d} = ${a*d}; ${b} × ${c} = ${b*c}; ${a*d} ${op?"−":"+"} ${b*c} = ${p}; Nenner ${b} × ${d} = ${q} → ${p}/${q} = ${fr(p,q)}`}}},
 
@@ -237,8 +260,8 @@ th:`<div class="card"><h3>Die Bausteine</h3>10 % = durch 10. 1 % = durch 100. 5 
 <div class="card"><h3>Der Tauschtrick</h3>x % von y = y % von x.</div>
 <div class="ex"><b>Beispiel: 4 % von 75</b><br>= 75 % von 4 = 3/4 von 4 = <b>3</b></div>
 <div class="card"><h3>Aufschlag</h3>Preis + p %: Rechne den Zuschlag aus und addiere.</div>`,
-g(){const k=r(0,2);
-if(k==0){const p=[5,10,15,20,25,30,40,50][r(0,7)],n=r(2,40)*10,a=Number((p*n/100).toFixed(4));
+g(L){const k=r(0,2);
+if(k==0){const p=L==3?r(3,47):(L==1?[10,20,25,50]:[5,10,15,20,25,30,40,50])[r(0,L==1?3:7)],n=L==3?r(2,99)*10:r(2,40)*10,a=Number((p*n/100).toFixed(4));
 return{q:`${p} % von ${n}`,a,e:`10 % = ${n/10}; 1 % = ${n/100}; ${p} × ${n/100} = ${f(a)}`}}
 if(k==1){const p=[5,10,15,20,25][r(0,4)],n=r(4,40)*10,a=Number((n*(1+p/100)).toFixed(4));
 return{q:`${n} plus ${p} %`,a,e:`${p} % von ${n} = ${f(n*p/100)}; ${n} + ${f(n*p/100)} = ${f(a)}`}}
@@ -251,81 +274,208 @@ th:`<div class="card"><h3>Ziffern werden zu Lauten</h3>0 = S/Z; 1 = T/D; 2 = N; 
 <div class="ex"><b>Beispiel: 321</b><br>3 = M, 2 = N, 1 = D → <b>Mond</b></div>
 <div class="ex"><b>Beispiel: 539</b><br>5 = L, 3 = M, 9 = P → <b>Lampe</b></div>
 <div class="card"><h3>Lange Zahlen</h3>Teile lange Zahlen in Gruppen von 2–3 Ziffern, verwandle jede Gruppe in ein Wort und verbinde die Wörter zu einer Bildergeschichte. Übung: Merke dir die Zahlen im Gedächtnistest (6 Sekunden).</div>`,
-g(){if(r(0,1)){const W=[["Tee",["T"]],["Nase",["N","S"]],["Mond",["M","N","D"]],["Lampe",["L","M","P"]],["Kamel",["K","M","L"]],["Messer",["M","S","R"]],["Tinte",["T","N","T"]],["Rinne",["R","N"]],["Knie",["K","N"]],["Tomate",["T","M","T"]],["Katze",["K","T","Z"]],["Koffer",["K","F","R"]],["Fisch",["F","SCH"]],["Wald",["W","L","D"]],["Buch",["B","CH"]],["Baum",["B","M"]],["Löwe",["L","W"]],["Feder",["F","D","R"]],["Mama",["M","M"]],["Käse",["K","S"]]];
+g(L){if(r(0,1)){const W=[["Tee",["T"]],["Nase",["N","S"]],["Mond",["M","N","D"]],["Lampe",["L","M","P"]],["Kamel",["K","M","L"]],["Messer",["M","S","R"]],["Tinte",["T","N","T"]],["Rinne",["R","N"]],["Knie",["K","N"]],["Tomate",["T","M","T"]],["Katze",["K","T","Z"]],["Koffer",["K","F","R"]],["Fisch",["F","SCH"]],["Wald",["W","L","D"]],["Buch",["B","CH"]],["Baum",["B","M"]],["Löwe",["L","W"]],["Feder",["F","D","R"]],["Mama",["M","M"]],["Käse",["K","S"]]];
 const w=W[r(0,W.length-1)],a=Number(w[1].map(c=>CODE[c]).join(""));
 return{q:w[0],nq:true,pre:"Welche Zahl steckt im Wort?",a,s:String(a),e:w[1].map(c=>`${c} = ${CODE[c]}`).join(", ")+` → ${a}`}}
-const g1=r(100,999),g2=r(100,999);
-return{q:`<span id="mem">${g1} ${g2}</span>`,nq:true,pre:"Merke dir die Zahl. Sie verschwindet nach 6 Sekunden.",fq:"Die Zahl war ",a:g1*1000+g2,s:`${g1} ${g2}`,e:"Tipp: Aus jeder Dreiergruppe ein Wort bilden (Lautsystem) und beide Wörter verknüpfen.",hook(){setTimeout(()=>{const e=$("mem");if(e&&!answered)e.textContent="• • •   • • •"},6000)}}}},
+const gr=L==1?[r(10,99),r(10,99)]:L==3?[r(100,999),r(100,999),r(100,999)]:[r(100,999),r(100,999)],sg=gr.join(" ");
+return{q:`<span id="mem">${sg}</span>`,nq:true,pre:"Merke dir die Zahl. Sie verschwindet nach 6 Sekunden.",fq:"Die Zahl war ",a:Number(gr.join("")),s:sg,e:"Tipp: Aus jeder Dreiergruppe ein Wort bilden (Lautsystem) und beide Wörter verknüpfen.",hook(){setTimeout(()=>{const e=$("mem");if(e&&!answered)e.textContent="• • •   • • •"},6000)}}}},
 
 {t:"Schnelle Kubikwurzeln",s:"Endziffer + Tausenderblock",
 th:`<div class="card"><h3>Kubikzahlen auswendig</h3>1³ = 1; 2³ = 8; 3³ = 27; 4³ = 64; 5³ = 125; 6³ = 216; 7³ = 343; 8³ = 512; 9³ = 729; 10³ = 1000.</div>
 <div class="card"><h3>Endziffer bestimmt die Einerziffer</h3>Endet die Kubikzahl auf 1, 4, 5, 6, 9 oder 0, endet die Wurzel auch so. Die Paare 2↔8 und 3↔7 sind vertauscht: 8 → 2, 2 → 8, 7 → 3, 3 → 7.</div>
 <div class="card"><h3>Tausenderblock bestimmt die Zehnerziffer</h3>Streiche die letzten drei Stellen und suche die größte Kubikzahl darunter.</div>
 <div class="ex"><b>Beispiel: ∛17 576</b><br>Endziffer 6 → Einer 6<br>17 liegt zwischen 8 (2³) und 27 (3³) → Zehner 2<br>Ergebnis: <b>26</b></div>`,
-g(){let x;do x=r(11,99);while(x%10==0);const n=x**3,t=Math.floor(x/10);
+g(L){let x;do x=L==1?r(11,50):r(11,99);while(x%10==0);const n=x**3,t=Math.floor(x/10);
 return{q:`∛${n.toLocaleString("de-DE")}`,a:x,e:`Endziffer ${n%10} → Einer ${x%10}; ${Math.floor(n/1000)} liegt zwischen ${t}³ = ${t**3} und ${t+1}³ = ${(t+1)**3} → Zehner ${t}; ${x}`}}},
 
 {t:"Wochentage berechnen",s:"Doomsday-Methode",
 th:`<div class="card"><h3>Die Idee</h3>In jedem Jahr fallen bestimmte Daten immer auf denselben Wochentag, den Doomsday: 4.4., 6.6., 8.8., 10.10., 12.12., 9.5., 5.9., 11.7., 7.11. und 14.3. (außerdem der 28.2./29.2. im Schaltjahr; 3.1., im Schaltjahr 4.1.).</div>
-<div class="card"><h3>Doomsday eines Jahres</h3>Ankertag des Jahrhunderts: 1900 = Mittwoch, 2000 = Dienstag. Für die letzten zwei Jahresziffern y: a = y : 12 (ganzzahlig), b = Rest, c = b : 4 (ganzzahlig). Doomsday = Anker + a + b + c (mod 7).</div>
+<div class="card"><h3>Doomsday eines Jahres</h3>Ankertag des Jahrhunderts: 1800 = Freitag, 1900 = Mittwoch, 2000 = Dienstag, 2100 = Sonntag, 2200 = Freitag. Für die letzten zwei Jahresziffern y: a = y : 12 (ganzzahlig), b = Rest, c = b : 4 (ganzzahlig). Doomsday = Anker + a + b + c (mod 7).</div>
 <div class="ex"><b>Beispiel: 14. März 2023</b><br>Anker 2000 = Dienstag<br>y = 23: a = 1, b = 11, c = 2 → Summe 14 = 0 (mod 7)<br>Doomsday 2023 = Dienstag + 0 = Dienstag<br>14.3. ist Doomsday → <b>Dienstag</b></div>
 <div class="card"><h3>Vom Doomsday zum Datum</h3>Zähle den Abstand zum nächsten Doomsday-Datum des Monats in Tagen und addiere ihn modulo 7.</div>
 <div class="card"><h3>Eingabe</h3>Schreibe den Wochentag (z. B. „Montag“ oder „Mo“).</div>`,
-g(){const WD=["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],MN=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
-const y=r(1900,2099),m=r(1,12),d=r(1,28),lp=(y%4==0&&y%100!=0)||y%400==0,dd=[lp?4:3,lp?29:28,14,4,9,6,11,8,5,10,7,12][m-1],an=y<2000?3:2,yy=y%100,a=Math.floor(yy/12),b=yy%12,c=Math.floor(b/4),doom=(an+a+b+c)%7,w=(doom+(((d-dd)%7)+7))%7;
+g(L){const WD=["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],MN=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+const y=L==1?r(2001,2030):L==3?r(1800,2299):r(1900,2099),m=r(1,12),d=r(1,28),lp=(y%4==0&&y%100!=0)||y%400==0,dd=[lp?4:3,lp?29:28,14,4,9,6,11,8,5,10,7,12][m-1],an=[5,3,2,0][(Math.floor(y/100)-18)%4],yy=y%100,a=Math.floor(yy/12),b=yy%12,c=Math.floor(b/4),doom=(an+a+b+c)%7,w=(doom+(((d-dd)%7)+7))%7;
 return{q:`${d}. ${MN[m-1]} ${y}`,nq:true,pre:"Welcher Wochentag ist das?",im:"text",a:w,s:WD[w],ck:v=>v.trim().toLowerCase().slice(0,2)==WD[w].toLowerCase().slice(0,2),
-e:`Anker ${WD[an]}; ${yy}: ${a} + ${b} + ${c} = ${a+b+c} → Doomsday des Jahres: ${WD[doom]}; ${dd}.${m}. ist Doomsday; Abstand ${d-dd} Tage → ${WD[w]}`}}}
+e:`Anker ${WD[an]}; ${yy}: ${a} + ${b} + ${c} = ${a+b+c} → Doomsday des Jahres: ${WD[doom]}; ${dd}.${m}. ist Doomsday; Abstand ${d-dd} Tage → ${WD[w]}`}}},
+{t:"Mehrere Zahlen addieren",s:"Bündeln und laufende Summe",
+th:`<div class="card"><h3>Die Idee</h3>Bei mehreren Summanden suchst du zuerst Zahlen, die sich zu glatten Werten ergänzen, und addierst diese Paare. Die Reihenfolge der Addition darf beliebig sein.</div>
+<div class="ex"><b>Beispiel: 47 + 38 + 53 + 12</b><br>47 + 53 = 100<br>38 + 12 = 50<br>100 + 50 = <b>150</b></div>
+<div class="card"><h3>Laufende Summe</h3>Findest du keine Paare, addierst du von links nach rechts und merkst dir nur das Zwischenergebnis.</div>
+<div class="ex"><b>Beispiel: 64 + 29 + 87</b><br>64 + 29 = 93 (64 + 30 − 1)<br>93 + 87 = <b>180</b></div>
+<div class="card"><h3>Nahe an einer glatten Zahl</h3>Rechne mit dem glatten Wert und korrigiere am Ende die Abweichungen.</div>
+<div class="ex"><b>Beispiel: 98 + 103 + 99 + 101</b><br>4 × 100 = 400; Abweichungen: −2 + 3 − 1 + 1 = +1<br>→ <b>401</b></div>`,
+g(L){const k=L==1?3:L==3?5:4,lo=L==3?100:11,hi=L==3?999:99,n=[];for(let i=0;i<k;i++)n.push(r(lo,hi));let c=n[0];const e=[];for(let i=1;i<k;i++){c+=n[i];e.push(`+ ${n[i]} = ${c}`)}
+return{q:n.join(" + "),a:c,e:`${n[0]} `+e.join("; ")}}},
+
+{t:"Differenzen und Wechselgeld (CHF)",s:"Nach oben ergänzen wie an der Kasse",
+th:`<div class="card"><h3>Die Idee</h3>Wechselgeld rechnet man nicht durch Abziehen, sondern durch Hochzählen: vom Preis zum nächsten Franken, dann zur nächsten 10er-Note, dann bis zum gegebenen Betrag. Die Teilbeträge addierst du.</div>
+<div class="ex"><b>Beispiel: Preis 37.85, bezahlt mit 50.–</b><br>37.85 → 38.00 (+ 0.15)<br>38 → 40 (+ 2)<br>40 → 50 (+ 10)<br>0.15 + 2 + 10 = <b>12.15 CHF</b></div>
+<div class="card"><h3>Mit Complements</h3>Bei 100 CHF: 100 − 37.85 = Complement von 37.85 zu 100. Alle Ziffern zu 9 ergänzen, die letzte zu 10 (3→6, 7→2, 8→1, 5→5): <b>62.15</b>.</div>
+<div class="card"><h3>Hinweis</h3>In der Schweiz wird an der Kasse auf 5 Rappen gerundet, deshalb enden alle Preise hier auf 0 oder 5 Rappen. Die Eingabe darf mit Punkt oder Komma erfolgen (z. B. 12.15).</div>`,
+g(L){const notes=[10,20,50,100,200,500];let cents;if(L==1)cents=r(3,48)*100;else if(L==2)cents=r(21,979)*5;else cents=r(201,3999)*5;
+const pay=notes.find(x=>x*100>cents),P=pay*100,fm=c=>(c/100).toFixed(2).replace(".",","),steps=[];let c=cents;const mk=to=>{if(to>c){steps.push(`${fm(c)} → ${fm(to)} (+${fm(to-c)})`);c=to}};
+mk(Math.ceil(cents/100)*100);mk(Math.min(P,Math.ceil(c/1000)*1000));mk(P);
+const ch=Number(((P-cents)/100).toFixed(2));
+return{q:`${fm(cents)} CHF, bezahlt mit ${pay} CHF`,nq:true,pre:"Wie viel Rückgeld (in CHF)?",a:ch,s:fm(P-cents)+" CHF",e:steps.join("; ")+` → Rückgeld ${fm(P-cents)} CHF`}}},
+
+{t:"Karteikarten: Quadrate und Kubikzahlen",s:"Auswendig lernen bis 25² und 10³",cards:true,
+th:`<div class="card"><h3>Quadratzahlen bis 25²</h3>${[...Array(25)].map((_,i)=>`${i+1}² = ${(i+1)**2}`).join(" · ")}</div>
+<div class="card"><h3>Kubikzahlen bis 10³</h3>${[...Array(10)].map((_,i)=>`${i+1}³ = ${(i+1)**3}`).join(" · ")}</div>
+<div class="card"><h3>Merkhilfen</h3>Quadrate ab 11: (n − 10)(n + 10) + 100, z. B. 17² = 7 × 27 + 100 = 289. Die Zahlen von 13 bis 19 lernst du besonders gut über diese Regel.<br>Kubikzahlen: n³ = n² × n, z. B. 7³ = 49 × 7 = 343.</div>
+<div class="card"><h3>So übst du</h3>Im Tab „Üben“ liegt ein Stapel Karteikarten. Karte lesen, Antwort im Kopf geben, umdrehen. Wusstest du es, fliegt die Karte aus dem Stapel; sonst kommt sie bald wieder. Mit „Eintippen“ kannst du dieselben Zahlen auch als Aufgabe üben, auf Stufe „Schwer“ auch rückwärts (Wurzeln).</div>`,
+g(L){const sq=r(0,2)>0,mx=L==1?15:25,mc=L==1?5:10;
+if(sq){const n=r(11,mx);if(L==3&&r(0,1))return{q:`√${n*n}`,a:n,e:`${n}² = ${n*n}`};return{q:`${n}²`,a:n*n,e:`(${n}−10) × (${n}+10) + 10² = ${(n-10)*(n+10)} + 100 = ${n*n}`}}
+const n=r(2,mc);if(L==3&&r(0,1))return{q:`∛${n**3}`,a:n,e:`${n}³ = ${n**3}`};return{q:`${n}³`,a:n**3,e:`${n}³ = ${n*n} × ${n} = ${n**3}`}}},
+
+{t:"Dezimalzahlen multiplizieren",s:"Komma erst am Schluss",
+th:`<div class="card"><h3>Die Idee</h3>Lass die Kommas zunächst weg und multipliziere die ganzen Zahlen. Zähle dann alle Nachkommastellen beider Faktoren und setze das Komma entsprechend von rechts.</div>
+<div class="ex"><b>Beispiel: 0,4 × 0,7</b><br>4 × 7 = 28<br>zwei Nachkommastellen → <b>0,28</b></div>
+<div class="ex"><b>Beispiel: 1,5 × 2,4</b><br>15 × 24 = 300 + 60 = 360<br>zwei Nachkommastellen → 3,60 = <b>3,6</b></div>
+<div class="card"><h3>Tipp</h3>Das Zerlegen funktioniert wie bei zweistelligen Zahlen: 15 × 24 = 10 × 24 + 5 × 24 = 240 + 120. Endet das Ergebnis auf 0, darfst du sie weglassen.</div>`,
+g(L){const ia=L==1?r(2,9):r(11,99),ib=L==3?r(11,99):r(2,9),ans=Number((ia*ib/100).toFixed(2));
+return{q:`${f(ia/10)} × ${f(ib/10)}`,a:ans,e:`${ia} × ${ib} = ${ia*ib}; zwei Nachkommastellen → ${f(ans)}`}}},
+
+{t:"Prozente: Bruch in % und Änderung",s:"Bruch → Prozent, prozentuale Veränderung",
+th:`<div class="card"><h3>Bruch in Prozent</h3>Merke dir die Stammbrüche: 1/2 = 50 %, 1/4 = 25 %, 1/5 = 20 %, 1/8 = 12,5 %, 1/10 = 10 %, 1/20 = 5 %, 1/25 = 4 %. Andere Zähler sind Vielfache davon.</div>
+<div class="ex"><b>Beispiel: 3/8</b><br>1/8 = 12,5 %<br>3 × 12,5 = <b>37,5 %</b></div>
+<div class="card"><h3>Prozentuale Änderung</h3>Änderung = (Neuer Wert − Alter Wert) : Alter Wert. Der Ausgangswert steht im Nenner.</div>
+<div class="ex"><b>Beispiel: 80 → 92</b><br>Differenz 12; 12 : 80 = 0,15 → <b>15 % Zunahme</b></div>
+<div class="ex"><b>Beispiel: 60 → 45</b><br>Differenz 15; 15 : 60 = 1/4 → <b>25 % Abnahme</b></div>
+<div class="card"><h3>Eingabe bei Änderungen</h3>Gib nur die Zahl ein (das Vorzeichen ist egal).</div>`,
+g(L){if(r(0,1)){const den=(L==1?[2,4,5,10]:L==3?[8,16,40]:[2,4,5,8,10,20,25])[r(0,L==1?3:L==3?2:6)],p=r(1,den-1),a=Number((p/den*100).toFixed(3));
+return{q:`${p}/${den} in %`,a,e:`1/${den} = ${f(100/den)} %; × ${p} = ${f(a)} %`}}
+const P=(L==1?[10,20,25,50]:L==3?[5,12.5,15,30,35,45,60,75]:[5,10,15,20,25,30,40,50]),p=P[r(0,P.length-1)],a=r(2,25)*20,up=r(0,1),b=Number((a*(up?1+p/100:1-p/100)).toFixed(4));
+return{q:`${f(a)} → ${f(b)}`,nq:true,pre:"Um wie viel Prozent ändert sich der Wert?",a:p,s:`${f(p)} % ${up?"Zunahme":"Abnahme"}`,ck:v=>Math.abs(Math.abs(pn(v))-p)<1e-6,e:`Differenz ${f(Math.abs(b-a))}; : Ausgangswert ${f(a)} = ${f(Math.abs(b-a)/a)} = ${f(p)} %`}}},
+
+{t:"Einheiten umrechnen",s:"Länge, Masse, Volumen, Zeit, Fläche",
+th:`<div class="card"><h3>Dezimale Einheiten</h3>Bei Länge, Masse und Volumen verschiebst du nur das Komma: 1 km = 1000 m; 1 m = 100 cm = 1000 mm; 1 t = 1000 kg; 1 kg = 1000 g; 1 l = 10 dl = 1000 ml.</div>
+<div class="ex"><b>Beispiel: 3,5 km in m</b><br>km → m: × 1000, Komma 3 Stellen nach rechts → <b>3500 m</b></div>
+<div class="ex"><b>Beispiel: 2500 g in kg</b><br>g → kg: : 1000 → <b>2,5 kg</b></div>
+<div class="card"><h3>Zeit ist nicht dezimal</h3>1 h = 60 min; 1 min = 60 s; 1 d = 24 h. Rechne mit ganzen Vielfachen: 2,5 h = 2 × 60 + 30 = 150 min.</div>
+<div class="card"><h3>Flächen und Volumen (Stufe Schwer)</h3>Bei Flächen springt jeder Schritt um 100 (1 m² = 10 000 cm²; 1 ha = 10 000 m²; 1 km² = 100 ha). 1 m³ = 1000 l.</div>`,
+g(L){const U=[["km","m",1000,1],["m","cm",100,1],["cm","mm",10,1],["kg","g",1000,1],["l","ml",1000,1],["h","min",60,1],["min","s",60,1],["t","kg",1000,2],["g","mg",1000,2],["l","dl",10,2],["dl","ml",100,2],["m","mm",1000,2],["d","h",24,2],["m²","cm²",10000,3],["ha","m²",10000,3],["m³","l",1000,3],["km²","ha",100,3]].filter(u=>u[3]<=L);
+const u=U[r(0,U.length-1)],x=L==1?r(2,50):L==2?r(11,99)/10:r(101,999)/100,v=Number((x*u[2]).toFixed(6)),dir=r(0,1);
+return{q:dir?`${f(v)} ${u[1]} in ${u[0]}`:`${f(x)} ${u[0]} in ${u[1]}`,nq:true,pre:"Rechne um:",a:dir?x:v,e:`1 ${u[0]} = ${f(u[2])} ${u[1]}; `+(dir?`${f(v)} : ${f(u[2])} = ${f(x)}`:`${f(x)} × ${f(u[2])} = ${f(v)}`)}}},
+
+{t:"Tempo, Strecke, Zeit",s:"v = s : t",
+th:`<div class="card"><h3>Die drei Formeln</h3>Strecke = Tempo × Zeit. Zeit = Strecke : Tempo. Tempo = Strecke : Zeit. Die Zeit musst du dazu in Stunden oder in Minuten umrechnen.</div>
+<div class="ex"><b>Beispiel: 80 km/h, 1 h 30 min</b><br>80 km in 60 min + 40 km in 30 min = <b>120 km</b></div>
+<div class="ex"><b>Beispiel: 150 km bei 60 km/h</b><br>60 km/h = 1 km pro Minute → <b>150 min</b></div>
+<div class="ex"><b>Beispiel: 90 km in 1 h 15 min</b><br>75 min: 90 : 75 = 1,2 km/min; × 60 = <b>72 km/h</b></div>
+<div class="card"><h3>Tipp</h3>Teile die Stunde auf: 15 min = 1/4 h, 30 min = 1/2 h, 45 min = 3/4 h, 20 min = 1/3 h. Bei Tempo × Minuten rechnest du v × min : 60.</div>`,
+g(L){const hm=t=>t<60?`${t} min`:`${Math.floor(t/60)} h`+(t%60?` ${t%60} min`:"");
+let v,tm;if(L==1){v=r(3,12)*10;tm=r(1,4)*60}else if(L==2){v=r(3,12)*10;tm=[15,30,45,75,90,105,150][r(0,6)]}else{v=r(2,10)*12;tm=r(2,23)*5}
+const s=v*tm/60,k=r(0,2);
+if(k==0)return{q:`${v} km/h während ${hm(tm)}`,nq:true,pre:"Wie weit kommt man (in km)?",a:s,e:`${v} × ${tm} : 60 = ${v*tm} : 60 = ${f(s)}`};
+if(k==1)return{q:`${f(s)} km bei ${v} km/h`,nq:true,pre:"Wie lange dauert es (in Minuten)?",a:tm,e:`Strecke : Tempo in Minuten = ${f(s)} × 60 : ${v} = ${f(s*60)} : ${v} = ${tm}`};
+return{q:`${f(s)} km in ${hm(tm)}`,nq:true,pre:"Wie schnell ist das (in km/h)?",a:v,e:`${f(s)} × 60 : ${tm} = ${f(s*60)} : ${tm} = ${v}`}}},
+
+{t:"Potenzen von 2 und 3",s:"Verdoppeln und Verdreifachen",
+th:`<div class="card"><h3>Zweierpotenzen</h3>2¹ = 2 · 2² = 4 · 2³ = 8 · 2⁴ = 16 · 2⁵ = 32 · 2⁶ = 64 · 2⁷ = 128 · 2⁸ = 256 · 2⁹ = 512 · 2¹⁰ = 1024<br>Weiter: 2¹¹ = 2048, 2¹² = 4096, 2¹⁶ = 65 536, 2²⁰ = 1 048 576.</div>
+<div class="card"><h3>Dreierpotenzen</h3>3¹ = 3 · 3² = 9 · 3³ = 27 · 3⁴ = 81 · 3⁵ = 243 · 3⁶ = 729 · 3⁷ = 2187 · 3⁸ = 6561 · 3¹⁰ = 59 049</div>
+<div class="card"><h3>Tricks</h3>Jede Potenz entsteht aus der vorherigen durch × 2 bzw. × 3. 2¹⁰ ≈ 1000 hilft beim Überschlagen. Exponenten addieren sich: 2⁶ × 2⁴ = 2¹⁰. Dreierpotenzen enden abwechselnd auf 3, 9, 7, 1.</div>
+<div class="ex"><b>Beispiel: 2¹³</b><br>2¹⁰ = 1024; × 8 = <b>8192</b></div>`,
+g(L){const b=r(0,1)?2:3,mx=b==2?(L==1?10:L==2?16:20):(L==1?5:L==2?8:10),n=r(2,mx),chain=[];let c=1;for(let i=1;i<=n;i++){c*=b;chain.push(c)}
+if(L==3&&r(0,1))return{q:`${b}<sup>?</sup> = ${f(b**n)}`,nq:true,pre:"Welche Hochzahl fehlt?",a:n,e:`${chain.map(x=>f(x)).join(", ")} → ${n}`};
+return{q:`${b}<sup>${n}</sup>`,a:b**n,e:chain.map(x=>f(x)).join(" → ")}}}
+
 ];
 
 function gcd(a,b){return b?gcd(b,a%b):a}
 function fr(p,q){const g=gcd(p,q);p/=g;q/=g;return q==1?""+p:p+"/"+q}
 function pn(v){v=v.replace(/\s/g,"").replace(",",".");if(v.includes("/")){const[a,b]=v.split("/");return Number(a)/Number(b)}return Number(v)}
+const rg=(L,a,b,c)=>{const x=[a,b,c][(L||2)-1];return r(x[0],x[1])};
+function addE(a,b){const h=b-b%100,t=b%100-b%10,o=b%10;let c=a;const e=[];[h,t,o].forEach(x=>{if(x){c+=x;e.push(`+ ${x} = ${c}`)}});return a+" "+e.join("; ")}
 const A=t=>t.s||f(t.a);
 const CODE={T:1,D:1,N:2,M:3,R:4,L:5,SCH:6,CH:6,J:6,K:7,G:7,F:8,V:8,W:8,P:9,B:9,S:0,Z:0};
 const TTS="speechSynthesis" in window,audio={on:false,hide:false};
-function conv(h){return h.split("<br>")[0].replace(/<[^>]+>/g," ").replace(/(\d+)\/(\d+)/g,"$1 über $2").replace(/×/g," mal ").replace(/÷|\s:\s/g," geteilt durch ").replace(/\+/g," plus ").replace(/[−-]/g," minus ").replace(/²/g," zum Quadrat ").replace(/∛/g,"dritte Wurzel aus ").replace(/%/g," Prozent").replace(/=/g," gleich ")}
+function conv(h){return h.split("<br>")[0].replace(/<sup>(.*?)<\/sup>/g," hoch $1 ").replace(/<[^>]+>/g," ").replace(/(\d+)\/(\d+)/g,"$1 über $2").replace(/×/g," mal ").replace(/÷|\s:\s/g," geteilt durch ").replace(/\+/g," plus ").replace(/[−-]/g," minus ").replace(/²/g," zum Quadrat ").replace(/³/g," hoch drei ").replace(/√/g,"Wurzel aus ").replace(/∛/g,"dritte Wurzel aus ").replace(/%/g," Prozent").replace(/=/g," gleich ")}
 function speakRaw(t){if(!TTS)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="de-DE";u.rate=.9;const v=speechSynthesis.getVoices().find(v=>v.lang.startsWith("de"));if(v)u.voice=v;speechSynthesis.speak(u)}
 function say(){const t=task;let b;if(t.q.includes('id="mem"'))b=t.s.split(" ").map(g=>g.split("").join(" ")).join(", ");else b=(t.nq?"":"Wie viel ist ")+conv(t.q);speakRaw((t.nq&&t.pre?t.pre+". ":"")+b+(t.nq?"":"?"))}
-const GROUPS=[["Addition & Subtraktion",[0,1]],["Multiplikation",[2,3,4,5,6,7,12,13,14,11,10,8,9,15]],["Division",[16,17]],["Brüche, Dezimal & Prozent",[18,19,20,21]],["Sonstiges",[22,23,24]]];
-const st=M.map(()=>({ok:0,n:0,str:0,seen:false}));
-let cur=0,tab="th",task=null,answered=false;
-const $=id=>document.getElementById(id);
-
+const GROUPS=[["Addition & Subtraktion",[0,1,25,26]],["Multiplikation: Tricks",[2,3,4,5,6,7]],["Multiplikation: mehrstellig & Quadrate",[12,13,14,11,10,8,9,15]],["Division",[16,17]],["Brüche, Dezimal & Prozent",[18,19,20,21,28,29]],["Alltag: Einheiten, Tempo, Kalender",[30,31,24]],["Potenzen & Gedächtnis",[32,27,22,23]]];
+const FC=["#89462D","#A8613F","#B0793A","#6B7A45","#4F7A78","#7A5C7A","#584B3D"];
+const st=M.map(()=>({ok:0,n:0,str:0,seen:false})),mixSt={ok:0,n:0,str:0};
+let view="mod",cur=0,tab="th",task=null,answered=false,lvl=2,mixRun=false,sheetOut="",cardMode=true;
+const openG={0:true},sel={mix:new Set(),sheet:new Set()},cm={set:"both",deck:[],flip:false,total:0},SH={n:20,sol:true,title:""};
+const $=id=>document.getElementById(id),LN=["","Leicht","Mittel","Schwer"],gOf=i=>GROUPS.findIndex(g=>g[1].includes(i));
+function taskFor(i){const t=M[i].g(lvl);t.mi=i;return t}
+function newTask(){let i=cur;if(view=="mix"){const ids=[...sel.mix];i=ids[r(0,ids.length-1)]}task=taskFor(i);answered=false}
 function nav(){
- $("nav").innerHTML=GROUPS.map(g=>`<div class="grp">${g[0]}</div>`+g[1].map(i=>`<button class="${i==cur?"on":""}" onclick="go(${i})"><span>${M[i].t}</span><small>${st[i].n?st[i].ok+"/"+st[i].n:st[i].seen?"✓":""}</small></button>`).join("")).join("");
+ const tl=(v,ic,t)=>`<button class="tool${view==v?" on":""}" onclick="gotoV('${v}')">${ic} ${t}</button>`;
+ $("nav").innerHTML=tl("mix","🔀","Gemischtes Training")+tl("sheet","🖨","Übungsblatt erstellen")+GROUPS.map((g,gi)=>{
+  const ok=g[1].reduce((a,i)=>a+st[i].ok,0),n=g[1].reduce((a,i)=>a+st[i].n,0);
+  return `<div class="fold${openG[gi]?" open":""}" style="--c:${FC[gi]}"><button class="fh" onclick="tog(${gi})"><span class="chev">▸</span>${g[0]}<small>${n?ok+"/"+n+" · ":""}${g[1].length}</small></button><div class="fbody">${g[1].map(i=>`<button class="it${view=="mod"&&i==cur?" on":""}" onclick="go(${i})"><span>${M[i].t}</span><small>${st[i].n?st[i].ok+"/"+st[i].n:st[i].seen?"✓":""}</small></button>`).join("")}</div></div>`}).join("");
  const ok=st.reduce((s,x)=>s+x.ok,0),n=st.reduce((s,x)=>s+x.n,0);
  $("total").textContent=n?`Gesamt: ${ok} von ${n} richtig`:"Wähle ein Thema";
 }
-function go(i){cur=i;tab="th";st[i].seen=true;render()}
-function setTab(t){tab=t;if(t=="pr")newTask();render()}
-function newTask(){task=M[cur].g();answered=false}
-function render(){
- nav();const m=M[cur];
+function tog(gi){openG[gi]=!openG[gi];nav()}
+function go(i){view="mod";cur=i;tab="th";st[i].seen=true;openG[gOf(i)]=true;render()}
+function gotoV(v){view=v;mixRun=false;if(v=="sheet")sheetOut="";render()}
+function setTab(t){tab=t;if(t=="pr"){if(M[cur].cards&&cardMode)buildDeck();else newTask()}render()}
+function lvlHTML(){return `<div class="lvl">Stufe: ${[1,2,3].map(n=>`<button class="chip${lvl==n?" on":""}" onclick="setL(${n})">${LN[n]}</button>`).join("")}</div>`}
+function setL(n){lvl=n;if(view=="mod"&&tab=="pr"&&M[cur].cards&&cardMode)buildDeck();else if((view=="mod"&&tab=="pr")||(view=="mix"&&mixRun))newTask();render()}
+function render(){nav();if(view=="mix")renderMix();else if(view=="sheet")renderSheet();else renderMod()}
+function renderMod(){const m=M[cur];
  let h=`<h2>${m.t}</h2><p class="sub">${m.s}</p><div class="tabs"><button class="${tab=="th"?"on":""}" onclick="setTab('th')">Theorie</button><button class="${tab=="pr"?"on":""}" onclick="setTab('pr')">Üben</button></div>`;
  if(tab=="th")h+=m.th+`<button class="btn" onclick="setTab('pr')">Jetzt üben</button>`;
- else{const s=st[cur];
-  h+=`<div class="card">${task.pre?`<p class="sub" style="text-align:center">${task.pre}</p>`:""}<div class="q${audio.hide?" hid":""}" id="qbox" onclick="if(audio.hide)this.classList.toggle('hid')">${task.q}${task.nq?"":" = ?"}</div>
-  ${TTS?`<div class="opts"><label><input type="checkbox" ${audio.on?"checked":""} onchange="audio.on=this.checked;if(this.checked)say();else speechSynthesis.cancel()"> Vorlesen</label><label><input type="checkbox" ${audio.hide?"checked":""} onchange="audio.hide=this.checked;if(this.checked)audio.on=true;render()"> Nur Audio (Aufgabe verdecken)</label><button class="btn alt" onclick="say()">🔊 Wiederholen</button></div>`:""}
-  <div class="row"><input id="in" type="text" inputmode="${task.im||"decimal"}" autocomplete="off" placeholder="Ergebnis" ${answered?"readonly":""}>
-  <button class="btn" id="chk" onclick="check()">Prüfen</button><button class="btn alt" onclick="show()">Lösung zeigen</button></div>
-  <div class="fb" id="fb"></div>
-  <div class="row" style="margin-top:14px"><button class="btn alt" onclick="next()">Nächste Aufgabe</button></div>
-  <div class="stats"><span>Richtig: ${s.ok} / ${s.n}</span><span>Serie: ${s.str}</span></div></div>`}
- $("main").innerHTML=h;
- if(tab=="pr"){if(task.hook)task.hook();if(audio.on&&!answered)say();const i=$("in");i.focus();i.onkeydown=e=>{if(e.key=="Enter"){e.preventDefault();answered?next():check()}}}
-}
+ else{if(m.cards)h+=`<div class="lvl">Modus: <button class="chip${cardMode?" on":""}" onclick="setCM(true)">Karteikarten</button><button class="chip${cardMode?"":" on"}" onclick="setCM(false)">Eintippen</button></div>`;
+  h+=lvlHTML()+((m.cards&&cardMode)?cardsHTML():practiceHTML())}
+ $("main").innerHTML=h;if(tab=="pr"&&!(m.cards&&cardMode))bindPractice()}
+function practiceHTML(){const s=view=="mix"?mixSt:st[cur];
+ return `<div class="card">${view=="mix"?`<div class="tag">${M[task.mi].t}</div>`:""}${task.pre?`<p class="sub" style="text-align:center">${task.pre}</p>`:""}<div class="q${audio.hide?" hid":""}" id="qbox" onclick="if(audio.hide)this.classList.toggle('hid')">${task.q}${task.nq?"":" = ?"}</div>
+ ${TTS?`<div class="opts"><label><input type="checkbox" ${audio.on?"checked":""} onchange="audio.on=this.checked;if(this.checked)say();else speechSynthesis.cancel()"> Vorlesen</label><label><input type="checkbox" ${audio.hide?"checked":""} onchange="audio.hide=this.checked;if(this.checked)audio.on=true;render()"> Nur Audio (Aufgabe verdecken)</label><button class="btn alt" onclick="say()">🔊 Wiederholen</button></div>`:""}
+ <div class="row"><input id="in" type="text" inputmode="${task.im||"decimal"}" autocomplete="off" placeholder="Ergebnis" ${answered?"readonly":""}><button class="btn" onclick="check()">Prüfen</button><button class="btn alt" onclick="show()">Lösung zeigen</button></div>
+ <div class="fb" id="fb"></div><div class="row" style="margin-top:14px"><button class="btn alt" onclick="next()">Nächste Aufgabe</button></div>
+ <div class="stats"><span>Richtig: ${s.ok} / ${s.n}</span><span>Serie: ${s.str}</span></div></div>`}
+function bindPractice(){if(task.hook)task.hook();if(audio.on&&!answered)say();const i=$("in");i.focus();i.onkeydown=e=>{if(e.key=="Enter"){e.preventDefault();answered?next():check()}}}
 function fb(c,t){const e=$("fb");e.className="fb "+c;e.innerHTML=t;if(audio.on&&answered)speakRaw(conv(t))}
-function check(){
- if(answered)return;const v=$("in").value;if(v==="")return fb("info","Gib zuerst ein Ergebnis ein.");
- const s=st[cur];s.n++;answered=true;
- if(task.ck?task.ck(v):Math.abs(pn(v)-task.a)<(task.tol||1e-6)){s.ok++;s.str++;fb("ok",`Richtig! ${task.fq||task.q+" = "}<b>${A(task)}</b><br><small>${task.e}</small>`)}
- else{s.str=0;fb("bad",`Leider falsch. Richtig ist <b>${A(task)}</b>.<br><small>Rechenweg: ${task.e}</small>`)}
- $("in").readOnly=true;$("in").focus();nav();updStats()
-}
-function show(){if(answered)return;answered=true;st[cur].n++;st[cur].str=0;fb("info",`Lösung: <b>${A(task)}</b><br><small>Rechenweg: ${task.e}</small>`);$("in").readOnly=true;$("in").focus();nav();updStats()}
-function updStats(){const s=st[cur];document.querySelector(".stats").innerHTML=`<span>Richtig: ${s.ok} / ${s.n}</span><span>Serie: ${s.str}</span>`}
+function bump(f){const ss=[st[task.mi]];if(view=="mix")ss.push(mixSt);ss.forEach(f)}
+function check(){if(answered)return;const v=$("in").value;if(v==="")return fb("info","Gib zuerst ein Ergebnis ein.");
+ bump(s=>s.n++);answered=true;
+ if(task.ck?task.ck(v):Math.abs(pn(v)-task.a)<(task.tol||1e-6)){bump(s=>{s.ok++;s.str++});fb("ok",`Richtig! ${task.fq||task.q+" = "}<b>${A(task)}</b><br><small>${task.e}</small>`)}
+ else{bump(s=>s.str=0);fb("bad",`Leider falsch. Richtig ist <b>${A(task)}</b>.<br><small>Rechenweg: ${task.e}</small>`)}
+ $("in").readOnly=true;$("in").focus();nav();updStats()}
+function show(){if(answered)return;answered=true;bump(s=>{s.n++;s.str=0});fb("info",`Lösung: <b>${A(task)}</b><br><small>Rechenweg: ${task.e}</small>`);$("in").readOnly=true;$("in").focus();nav();updStats()}
+function updStats(){const s=view=="mix"?mixSt:st[cur];document.querySelector(".stats").innerHTML=`<span>Richtig: ${s.ok} / ${s.n}</span><span>Serie: ${s.str}</span>`}
 function next(){newTask();render()}
-render();
+/* Karteikarten */
+function buildDeck(){const a=lvl==1?15:25,b=lvl==1?5:10,d=[];if(cm.set!="cubes")for(let n=2;n<=a;n++)d.push([n+"²",n*n]);if(cm.set!="squares")for(let n=2;n<=b;n++)d.push([n+"³",n**3]);d.sort(()=>Math.random()-.5);cm.deck=d;cm.total=d.length;cm.flip=false}
+function setCM(b){cardMode=b;if(b)buildDeck();else newTask();render()}
+function setSet(x){cm.set=x;buildDeck();render()}
+function cardsHTML(){const s=st[cur],sets=[["both","Beides"],["squares","Quadrate"],["cubes","Kubikzahlen"]];
+ let h=`<div class="lvl">Karten: ${sets.map(x=>`<button class="chip${cm.set==x[0]?" on":""}" onclick="setSet('${x[0]}')">${x[1]}</button>`).join("")}</div>`;
+ if(!cm.deck.length)return h+`<div class="card" style="text-align:center"><div class="q">🎉</div><p>Alle ${cm.total} Karten gewusst!</p><button class="btn" onclick="buildDeck();render()">Neu mischen</button></div>`;
+ const c=cm.deck[0];
+ return h+`<div class="card"><div class="flash" onclick="${cm.flip?"":"flipC()"}"><div class="q">${c[0]}</div>${cm.flip?`<div class="q ans">= ${c[1]}</div>`:`<p class="hint">Klicken oder Enter zum Umdrehen</p>`}</div><div class="row">${cm.flip?`<button class="btn" onclick="knownC()">✔ Gewusst (Enter)</button><button class="btn alt" onclick="againC()">↻ Nochmal (N)</button>`:`<button class="btn" onclick="flipC()">Umdrehen (Enter)</button>`}</div><div class="stats"><span>Noch offen: ${cm.deck.length} von ${cm.total}</span><span>Richtig: ${s.ok} / ${s.n}</span></div></div>`}
+function flipC(){cm.flip=true;render()}
+function knownC(){const s=st[cur];s.n++;s.ok++;s.str++;cm.deck.shift();cm.flip=false;render()}
+function againC(){const s=st[cur];s.n++;s.str=0;const c=cm.deck.shift();cm.deck.splice(Math.min(3,cm.deck.length),0,c);cm.flip=false;render()}
+document.addEventListener("keydown",e=>{if(view=="mod"&&M[cur].cards&&cardMode&&tab=="pr"&&cm.deck.length&&e.target.tagName!="INPUT"){if(e.key=="Enter"||e.key==" "){e.preventDefault();cm.flip?knownC():flipC()}else if(cm.flip&&(e.key=="n"||e.key=="N"||e.key=="ArrowLeft"))againC()}});
+/* Themenauswahl */
+function picker(v){return GROUPS.map((g,gi)=>`<div class="pg" style="--c:${FC[gi]}"><label class="pgh"><input type="checkbox" ${g[1].every(i=>sel[v].has(i))?"checked":""} onchange="tg('${v}',${gi},this.checked)"> ${g[0]}</label><div class="pl">${g[1].map(i=>`<label><input type="checkbox" ${sel[v].has(i)?"checked":""} onchange="tm('${v}',${i},this.checked)"> ${M[i].t}</label>`).join("")}</div></div>`).join("")+`<div class="row" style="margin:10px 0"><button class="btn alt" onclick="ta('${v}',1)">Alle</button><button class="btn alt" onclick="ta('${v}',0)">Keine</button></div>`}
+function tm(v,i,on){on?sel[v].add(i):sel[v].delete(i);render()}
+function tg(v,gi,on){GROUPS[gi][1].forEach(i=>on?sel[v].add(i):sel[v].delete(i));render()}
+function ta(v,on){sel[v].clear();if(on)M.forEach((_,i)=>sel[v].add(i));render()}
+/* Gemischtes Training */
+function renderMix(){
+ if(!mixRun){$("main").innerHTML=`<h2>Gemischtes Training</h2><p class="sub">Wähle beliebig viele Themen. Die Aufgaben kommen danach zufällig gemischt.</p>${lvlHTML()}${picker("mix")}<div class="err" id="mixerr"></div><button class="btn" onclick="startMix()">Training starten (${sel.mix.size} Themen)</button>`;return}
+ $("main").innerHTML=`<h2>Gemischtes Training</h2><p class="sub">${sel.mix.size} Themen · <a href="#" onclick="mixRun=false;render();return false">Auswahl ändern</a></p>${lvlHTML()}${practiceHTML()}`;bindPractice()}
+function startMix(){if(!sel.mix.size){$("mixerr").textContent="Bitte mindestens ein Thema wählen.";return}mixRun=true;mixSt.ok=mixSt.n=mixSt.str=0;newTask();render()}
+/* Übungsblatt */
+function renderSheet(){
+ $("main").innerHTML=`<div class="noprint"><h2>Übungsblatt</h2><p class="sub">Themen und Stufe wählen, Blatt erstellen und drucken (oder als PDF speichern).</p>${lvlHTML()}${picker("sheet")}
+ <div class="row" style="margin:12px 0;align-items:center"><input id="sht" type="text" style="width:260px;font-size:16px" placeholder="Titel / Klasse (optional)" value="${SH.title.replace(/"/g,"&quot;")}"><label>Aufgaben: <select id="shn">${[10,15,20,30,40].map(n=>`<option${n==SH.n?" selected":""}>${n}</option>`).join("")}</select></label><label><input type="checkbox" id="shs" ${SH.sol?"checked":""}> mit Lösungsseite</label></div>
+ <div class="err" id="sheeterr"></div><div class="row"><button class="btn" onclick="makeSheet()">Blatt erstellen</button></div></div><div id="sheetOut">${sheetOut}</div>`}
+function stxt(t){return (t.nq&&t.pre?t.pre.replace(/\s*\(.*?\)/,"")+" ":"")+t.q+(t.nq?"":" =")+(!t.nq&&t.pre?` <small>(${t.pre.replace(/^Ergebnis als /,"").replace(/\s*\(.*\)/,"")})</small>`:"")}
+function makeSheet(){const ids=[...sel.sheet];if(!ids.length){$("sheeterr").textContent="Bitte mindestens ein Thema wählen.";return}
+ SH.n=+$("shn").value;SH.sol=$("shs").checked;SH.title=$("sht").value;
+ let order=[];while(order.length<SH.n)order.push(...ids.slice().sort(()=>Math.random()-.5));order=order.slice(0,SH.n).sort(()=>Math.random()-.5);
+ const seen=new Set(),ts=order.map(i=>{let t,k=0;do{t=taskFor(i);k++}while((t.q.includes('id="mem"')||seen.has(i+t.q))&&k<15);seen.add(i+t.q);return t});
+ const ti=(SH.title||"Kopfrechnen – Übungsblatt").replace(/</g,"&lt;");
+ sheetOut=`<div class="sheet"><h2>${ti}</h2><div class="meta">Name: ______________ &nbsp; Datum: ________ &nbsp; Stufe: ${LN[lvl]} &nbsp; Zeit: ______ &nbsp; Punkte: ____ / ${SH.n}</div><ol class="tasks">${ts.map(t=>`<li>${stxt(t)}<span class="ln"></span></li>`).join("")}</ol>${SH.sol?`<div class="sol"><h3>Lösungen</h3><ol>${ts.map(t=>`<li>${A(t)} <small>(${M[t.mi].t})</small></li>`).join("")}</ol></div>`:""}</div><div class="row noprint" style="margin-top:12px"><button class="btn" onclick="window.print()">🖨 Drucken / als PDF speichern</button></div>`;
+ $("sheetOut").innerHTML=sheetOut}
+buildDeck();go(0);
 </script>
 </body>
 </html>
