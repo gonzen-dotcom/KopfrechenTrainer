@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kopfrechnen-Trainer</title>
 <style>
-:root{--bg:#f3f6f4;--card:#fff;--ink:#16302b;--mute:#5b706b;--line:#d5e0dc;--acc:#0f766e;--accbg:#d9f0ec;--ok:#15803d;--okbg:#dcfce7;--bad:#b91c1c;--badbg:#fee2e2}
-@media(prefers-color-scheme:dark){:root{--bg:#10201d;--card:#183029;--ink:#e6f3ef;--mute:#9bb5ae;--line:#2b4a42;--acc:#5eead4;--accbg:#1f4a43;--ok:#86efac;--okbg:#14532d;--bad:#fca5a5;--badbg:#7f1d1d}}
+:root{--bg:#F3EADB;--card:#FAF5EA;--ink:#584B3D;--mute:#7E6F5E;--line:#D6D1BE;--acc:#89462D;--accbg:#E9E0CC;--ok:#4B6B2F;--okbg:#E3E8CC;--bad:#8B2E22;--badbg:#F2D9CC}
+@media(prefers-color-scheme:dark){:root{--bg:#3B3229;--card:#4A3F34;--ink:#F3EADB;--mute:#CFC3AE;--line:#6B5D4D;--acc:#E3AE8F;--accbg:#5A4B3C;--ok:#C9DDA3;--okbg:#4B5A2E;--bad:#F2B8A8;--badbg:#6E2E24}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Georgia,"Times New Roman",serif}
 h1,h2,h3,button,input,.nav button{font-family:"Trebuchet MS","Segoe UI",sans-serif}
@@ -15,6 +15,7 @@ h1{margin:0;font-size:22px}
 #total{color:var(--mute);font-size:14px;font-family:sans-serif}
 .wrap{display:grid;grid-template-columns:260px 1fr;max-width:1000px;margin:0 auto}
 .nav{padding:14px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.grp{font:700 11px sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--acc);margin:14px 10px 2px}.grp:first-child{margin-top:2px}
 .nav button{text-align:left;border:0;background:none;color:var(--ink);padding:9px 10px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;justify-content:space-between;gap:8px}
 .nav button:hover{background:var(--accbg)}
 .nav button.on{background:var(--acc);color:var(--bg)}
@@ -42,7 +43,7 @@ input:focus{outline:2px solid var(--acc);border-color:var(--acc)}
 .fb.info{display:block;background:var(--accbg)}
 .stats{display:flex;gap:18px;justify-content:center;color:var(--mute);font:14px sans-serif;margin-top:16px}
 .lvl{display:flex;gap:8px;align-items:center;justify-content:center;margin-bottom:6px;font:14px sans-serif;color:var(--mute)}
-@media(max-width:700px){.wrap{grid-template-columns:1fr}.nav{border-right:0;border-bottom:1px solid var(--line);flex-direction:row;overflow-x:auto}.nav button{white-space:nowrap}}
+@media(max-width:700px){.grp{margin:0 4px!important;align-self:center;white-space:nowrap}.wrap{grid-template-columns:1fr}.nav{border-right:0;border-bottom:1px solid var(--line);flex-direction:row;overflow-x:auto}.nav button{white-space:nowrap}}
 </style>
 </head>
 <body>
@@ -285,12 +286,13 @@ const TTS="speechSynthesis" in window,audio={on:false,hide:false};
 function conv(h){return h.split("<br>")[0].replace(/<[^>]+>/g," ").replace(/(\d+)\/(\d+)/g,"$1 über $2").replace(/×/g," mal ").replace(/÷|\s:\s/g," geteilt durch ").replace(/\+/g," plus ").replace(/[−-]/g," minus ").replace(/²/g," zum Quadrat ").replace(/∛/g,"dritte Wurzel aus ").replace(/%/g," Prozent").replace(/=/g," gleich ")}
 function speakRaw(t){if(!TTS)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="de-DE";u.rate=.9;const v=speechSynthesis.getVoices().find(v=>v.lang.startsWith("de"));if(v)u.voice=v;speechSynthesis.speak(u)}
 function say(){const t=task;let b;if(t.q.includes('id="mem"'))b=t.s.split(" ").map(g=>g.split("").join(" ")).join(", ");else b=(t.nq?"":"Wie viel ist ")+conv(t.q);speakRaw((t.nq&&t.pre?t.pre+". ":"")+b+(t.nq?"":"?"))}
+const GROUPS=[["Addition & Subtraktion",[0,1]],["Multiplikation",[2,3,4,5,6,7,12,13,14,11,10,8,9,15]],["Division",[16,17]],["Brüche, Dezimal & Prozent",[18,19,20,21]],["Sonstiges",[22,23,24]]];
 const st=M.map(()=>({ok:0,n:0,str:0,seen:false}));
 let cur=0,tab="th",task=null,answered=false;
 const $=id=>document.getElementById(id);
 
 function nav(){
- $("nav").innerHTML=M.map((m,i)=>`<button class="${i==cur?"on":""}" onclick="go(${i})"><span>${i+1}. ${m.t}</span><small>${st[i].n?st[i].ok+"/"+st[i].n:st[i].seen?"✓":""}</small></button>`).join("");
+ $("nav").innerHTML=GROUPS.map(g=>`<div class="grp">${g[0]}</div>`+g[1].map(i=>`<button class="${i==cur?"on":""}" onclick="go(${i})"><span>${M[i].t}</span><small>${st[i].n?st[i].ok+"/"+st[i].n:st[i].seen?"✓":""}</small></button>`).join("")).join("");
  const ok=st.reduce((s,x)=>s+x.ok,0),n=st.reduce((s,x)=>s+x.n,0);
  $("total").textContent=n?`Gesamt: ${ok} von ${n} richtig`:"Wähle ein Thema";
 }
@@ -304,13 +306,13 @@ function render(){
  else{const s=st[cur];
   h+=`<div class="card">${task.pre?`<p class="sub" style="text-align:center">${task.pre}</p>`:""}<div class="q${audio.hide?" hid":""}" id="qbox" onclick="if(audio.hide)this.classList.toggle('hid')">${task.q}${task.nq?"":" = ?"}</div>
   ${TTS?`<div class="opts"><label><input type="checkbox" ${audio.on?"checked":""} onchange="audio.on=this.checked;if(this.checked)say();else speechSynthesis.cancel()"> Vorlesen</label><label><input type="checkbox" ${audio.hide?"checked":""} onchange="audio.hide=this.checked;if(this.checked)audio.on=true;render()"> Nur Audio (Aufgabe verdecken)</label><button class="btn alt" onclick="say()">🔊 Wiederholen</button></div>`:""}
-  <div class="row"><input id="in" type="text" inputmode="${task.im||"decimal"}" autocomplete="off" placeholder="Ergebnis" ${answered?"disabled":""}>
+  <div class="row"><input id="in" type="text" inputmode="${task.im||"decimal"}" autocomplete="off" placeholder="Ergebnis" ${answered?"readonly":""}>
   <button class="btn" id="chk" onclick="check()">Prüfen</button><button class="btn alt" onclick="show()">Lösung zeigen</button></div>
   <div class="fb" id="fb"></div>
   <div class="row" style="margin-top:14px"><button class="btn alt" onclick="next()">Nächste Aufgabe</button></div>
   <div class="stats"><span>Richtig: ${s.ok} / ${s.n}</span><span>Serie: ${s.str}</span></div></div>`}
  $("main").innerHTML=h;
- if(tab=="pr"){if(task.hook)task.hook();if(audio.on&&!answered)say();const i=$("in");i.focus();i.onkeydown=e=>{if(e.key=="Enter")answered?next():check()}}
+ if(tab=="pr"){if(task.hook)task.hook();if(audio.on&&!answered)say();const i=$("in");i.focus();i.onkeydown=e=>{if(e.key=="Enter"){e.preventDefault();answered?next():check()}}}
 }
 function fb(c,t){const e=$("fb");e.className="fb "+c;e.innerHTML=t;if(audio.on&&answered)speakRaw(conv(t))}
 function check(){
@@ -318,9 +320,9 @@ function check(){
  const s=st[cur];s.n++;answered=true;
  if(task.ck?task.ck(v):Math.abs(pn(v)-task.a)<(task.tol||1e-6)){s.ok++;s.str++;fb("ok",`Richtig! ${task.fq||task.q+" = "}<b>${A(task)}</b><br><small>${task.e}</small>`)}
  else{s.str=0;fb("bad",`Leider falsch. Richtig ist <b>${A(task)}</b>.<br><small>Rechenweg: ${task.e}</small>`)}
- $("in").disabled=true;nav();updStats()
+ $("in").readOnly=true;$("in").focus();nav();updStats()
 }
-function show(){if(answered)return;answered=true;st[cur].n++;st[cur].str=0;fb("info",`Lösung: <b>${A(task)}</b><br><small>Rechenweg: ${task.e}</small>`);$("in").disabled=true;nav();updStats()}
+function show(){if(answered)return;answered=true;st[cur].n++;st[cur].str=0;fb("info",`Lösung: <b>${A(task)}</b><br><small>Rechenweg: ${task.e}</small>`);$("in").readOnly=true;$("in").focus();nav();updStats()}
 function updStats(){const s=st[cur];document.querySelector(".stats").innerHTML=`<span>Richtig: ${s.ok} / ${s.n}</span><span>Serie: ${s.str}</span>`}
 function next(){newTask();render()}
 render();
